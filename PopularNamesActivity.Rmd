@@ -1,7 +1,7 @@
 ---
 title: "Activity: Popular Names"
-author: "Your Names Here"
-date: ""
+author: "Eric weah"
+date: "2/23/2020"
 output: html_notebook
 ---
 
@@ -29,22 +29,50 @@ data("BabyNames")
 
 
 ### Step 1
+To view babynames data
 
+```{r}
+view(BabyNames)
 
-
+```
+The view() function allows you to see the table including all the variables and cases.
 ### Step 3
+a.) sex and count  is not included in the graph but in the data
 
-
+b.) count is changed to popularity 
 
 ### Step 4
+a.) cases have been filtered because there are only 3 cases shown.
 
+b.) there are only male names that appear
 
+c.) popularity is the only new variable, and its relationship is with count in the raw data
 
 ### Step 5
+step 1: assaign a new variable GlyphReadyForm
 
+step 2: filter the baby names franklin, woodrow, abraham using contain
+
+step 3: select only the variables name, sex, year, and total
 
 
 ### Step 7
+```{r}
+
+GlyphReadyForm <-
+ BabyNames %>%
+   mutate(total= count/500) %>%
+  filter(sex =="F")%>%
+  filter(name %in% c("Eric", "Mary",  "Emma", "Cora"))%>%
+select(name,sex,year,total)
+view(GlyphReadyForm)
+
+GlyphReadyForm %>% 
+  ggplot(aes(x = year, y = total, group = name)) +
+  geom_line( size = 1, alpha = 0.5, aes(color = name)) +
+  ylab("Popularity") + xlab("Year")
+
+```
 
 
 
